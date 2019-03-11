@@ -1,0 +1,64 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: double;
+    background-color: honeydew;
+    margin: 100px;
+    font-family: 'Fredoka One', cursive;
+}
+#trivia {
+    background-color: white;
+    border: 2px black;
+    width: 400px;
+    height: auto; /*auto will create space dependent upon the content within the frame, you can set it to 400px or anything*/
+    border-radius: 10px;
+    padding: 10px;
+    margin: 20 px;
+}
+
+/*For the start, next and end of quiz button*/
+.buttons001 {
+    background-color: black;
+    color: white;
+    padding: 5px;
+    margin: 10px;
+    border-radius: 10px;
+    width: 100px;
+}
+
+/*For the four options*/
+.buttons002 {
+    background-color: lightblue;
+    color: black;
+    padding: 5px;
+    margin: 10px;
+    border-radius: 10px;
+    width: auto;
+}
+#next001 {
+    /*background-color: blue;*/
+    color: white;
+    padding: 5px;
+    margin: 10px;
+    border-radius: 10px;
+    width: 100px;
+}
+
+#userInfo {
+    text-align: center;
+    font-family: 'Fredoka One', cursive;
+}
+
+#text002 {
+    text-align: left;
+}
+
+/*Green is for the correct answer, Red is for the incorrect answer*/
+#green001 {
+    color: green;
+}
+
+#red001 {
+    color: red;
+}
