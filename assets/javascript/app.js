@@ -79,26 +79,51 @@ $("<button>").click(q7i).text(q[7].options[3]),
 ];
 
 //The following result messages arrays was my attempt to best mirror the homework Trivia video provided from Gitlab. At first it seemed inefficient but I like the uniqueness behind it.  
-var correct = ["Correct!<br/> Aren't you some sugar, spice and everything nice?", 
-            "Correct!<br/> You earned yourself a jawbreaker!",
-            "Correct!<br/> On your way to Numbah 1 !",
-            "Correct!<br/> Right on, baby bebe.",
-            "Correct!<br/> He who runs with aggression, runs without dignity",
-            "Correct!<br/> Looks like the only Scooby snack around here is you.",
-            "Correct!<br/> Keep up the good work you hero.",
-            "Correct!<br/> Your power level ... IT'S OVER 9000!!!"];
-var incorrect = ["Incorrect<br/> The answer was Powerpuff Girls!", 
-            "Incorrect<br/> The answer was Ed, Edd, n Eddy!", 
-            "Incorrect<br/> The answer was Codename: Kid's Next Door", 
-            "Incorrect<br/> The answer was Johnny Bravo", 
-            "Incorrect<br/> The answer was Samurai Jack", 
-            "Incorrect<br/> The answer was Scooby & Shaggy", 
-            "Incorrect<br/> The answer was Dexter's Laboratory", 
-            "Incorrect<br/> The answer was Dragon Ball Z"];
+var correct = ["Correct!<br/> Aren't you some sugar, spice and everything nice?",
+    "Correct!<br/> You earned yourself a jawbreaker!",
+    "Correct!<br/> On your way to Numbah 1 !",
+    "Correct!<br/> Right on, baby bebe.",
+    "Correct!<br/> He who runs with aggression, runs without dignity",
+    "Correct!<br/> Looks like the only Scooby snack around here is you.",
+    "Correct!<br/> Keep up the good work you hero.",
+    "Correct!<br/> Your power level ... IT'S OVER 9000!!!"];
+var incorrect = ["Incorrect<br/> The answer was Powerpuff Girls!",
+    "Incorrect<br/> The answer was Ed, Edd, n Eddy!",
+    "Incorrect<br/> The answer was Codename: Kid's Next Door",
+    "Incorrect<br/> The answer was Johnny Bravo",
+    "Incorrect<br/> The answer was Samurai Jack",
+    "Incorrect<br/> The answer was Scooby & Shaggy",
+    "Incorrect<br/> The answer was Dexter's Laboratory",
+    "Incorrect<br/> The answer was Dragon Ball Z"];
 
 //This is to keep track of the question number and the score count
 var number = 0; number++;
 var score = 0; score++;
+
+$("#beginButton").click(questionZero).click(run);
+
+//I will store my timer info here
+var timeCount = 60 * 1000 //BASICALLY 1 MINUTE BUT IDK HOW TO CONVERT
+var timeTime;
+
+function run() {
+    clearInterval(timeTime);
+    timeTime = setInterval(decrement, 1000);
+}
+function decrement() {
+    timeCount--;
+    $("#big-time-rush").text(timeCount);
+
+    if (timeCount === 0) {
+        stop();
+        endGame();
+        $("#answer001").html("<br/>Finish the game in less than 2 minutes next time!") //Not applicable to each question but close enough
+        //<ADD A SLOWPOKE IMAGE>
+    }
+}
+function stop() {
+    clearInterval(timeTime);
+}
 
 /*The logic I had in mind was to create a function for the question that appears on screen (named question#). It'll contain the multiple
  choice buttons that trigger to either a function for the correct answer or a function to the incorrect answer. Those trigger functions
@@ -108,9 +133,9 @@ var score = 0; score++;
  to do this but I couldn't wrap my mind around embedding if else statements within for loops to the array of objects I created. 
  Especially after throwing in those jQuery button calls.*/
 function questionZero() {
-    $("#disappear001").html("");
-    $("#message001").html("");
-
+    $("#hideThisJawn").hide();
+    $("#message001").hide();
+    run();
     $("#ask").html(q[0].question);
     $("#A").html(a[0]);
     $("#B").html(b[0]);
@@ -121,6 +146,7 @@ function questionZero() {
 }
 function q0c() {
     $("#answer001").html("<div id=green001>" + correct[0]);
+    $("#image-holder").html("<img src='assets/images/01_powerpuff.gif' width='400px'/>");
     $("#A").text("");
     $("#B").text("");
     $("#C").text("");
@@ -130,6 +156,7 @@ function q0c() {
 }
 function q0i() {
     $("#answer001").html("<div id=red001>" + incorrect[0]);
+    $("#image-holder").html("<img src='assets/images/01_powerpuff.gif' width='400px'/>");
     $("#A").text("");
     $("#B").text("");
     $("#C").text("");
@@ -139,6 +166,7 @@ function q0i() {
 
 function questionOne() {
     $("#ask").html(q[1].question);
+    $("#image-holder").html("");
     $("#A").html(a[1]);
     $("#B").html(b[1]);
     $("#C").html(c[1]);
@@ -152,27 +180,30 @@ function questionOne() {
 }
 function q1c() {
     answer001.innerHTML = "<div id=green001>" + correct[1] + "</div>";
+    $("#image-holder").html("<img src='assets/images/02-eddbored.gif' width='400px'/>");
     $("#A").text("");
     $("#B").text("");
     $("#C").text("");
     $("#D").text("");
     //Change the next button to your new question
-    next001.innerHTML = "<button class=buttons001 onclick=questionTwo()>End of Quiz</button>";
+    next001.innerHTML = "<button class=buttons001 onclick=questionTwo()>Next</button>";
     scoreDisplay.innerHTML = score++;
 }
 function q1i() {//Change the function name to the question result
     //Change the incorrect answer index
     answer001.innerHTML = "<div id=red001>" + incorrect[1] + "</div>";
+    $("#image-holder").html("<img src='assets/images/02-eddbored.gif' width='400px'/>");
     $("#A").text("");
     $("#B").text("");
     $("#C").text("");
     $("#D").text("");
     //Change the next button to your new question
-    next001.innerHTML = "<button class=buttons001 onclick=questionTwo()>End of Quiz</button>";
+    next001.innerHTML = "<button class=buttons001 onclick=questionTwo()>Next</button>";
 }
 //==== GET READY FOR A LONG LIST OF FUNCTIONS REPEATING PRETTY MUCH THE SAME THING BUT W/ DIFFERENT INDEXES FOR THE VARIABLES
 function questionTwo() {
     $("#ask").html(q[2].question);
+    $("#image-holder").html("");
     $("#A").html(a[2]);
     $("#B").html(b[2]);
     $("#C").html(c[2]);
@@ -184,26 +215,29 @@ function questionTwo() {
 }
 function q2c() {
     answer001.innerHTML = "<div id=green001>" + correct[2] + "</div>";
+    $("#image-holder").html("<img src='assets/images/03_kids.gif' width='400px'/>");
     $("#A").text("");
     $("#B").text("");
     $("#C").text("");
     $("#D").text("");
 
-    next001.innerHTML = "<button class=buttons001 onclick=questionThree()>End of Quiz</button>";
+    next001.innerHTML = "<button class=buttons001 onclick=questionThree()>Next</button>";
     scoreDisplay.innerHTML = score++;
 }
 function q2i() {
     answer001.innerHTML = "<div id=red001>" + incorrect[2] + "</div>";
+    $("#image-holder").html("<img src='assets/images/03_kids.gif' width='400px'/>");
     $("#A").text("");
     $("#B").text("");
     $("#C").text("");
     $("#D").text("");
 
-    next001.innerHTML = "<button class=buttons001 onclick=questionThree()>End of Quiz</button>";
+    next001.innerHTML = "<button class=buttons001 onclick=questionThree()>Next</button>";
 }
 
 function questionThree() {
     $("#ask").html(q[3].question);
+    $("#image-holder").html("");
     $("#A").html(a[3]);
     $("#B").html(b[3]);
     $("#C").html(c[3]);
@@ -215,150 +249,165 @@ function questionThree() {
 }
 function q3c() {
     answer001.innerHTML = "<div id=green001>" + correct[3] + "</div>";
+    $("#image-holder").html("<img src='assets/images/04_johnny.gif' width='400px'/>");
     $("#A").text("");
     $("#B").text("");
     $("#C").text("");
     $("#D").text("");
 
-    next001.innerHTML = "<button class=buttons001 onclick=questionFour()>End of Quiz</button>";
+    next001.innerHTML = "<button class=buttons001 onclick=questionFour()>Next</button>";
     scoreDisplay.innerHTML = score++;
 }
 function q3i() {
     answer001.innerHTML = "<div id=red001>" + incorrect[3] + "</div>";
+    $("#image-holder").html("<img src='assets/images/04_johnny.gif' width='400px'/>");
     $("#A").text("");
     $("#B").text("");
     $("#C").text("");
     $("#D").text("");
 
-    next001.innerHTML = "<button class=buttons001 onclick=questionFour()>End of Quiz</button>";
+    next001.innerHTML = "<button class=buttons001 onclick=questionFour()>Next</button>";
 }
 
 function questionFour() {
     $("#ask").html(q[4].question);
+    $("#image-holder").html("");
     $("#A").html(a[4]);
     $("#B").html(b[4]);
     $("#C").html(c[4]);
     $("#D").html(d[4]);
-    
+
     $("#next001").text("");
     $("#answer001").text("");
     $("#numberQuestion").html(number++);
 }
 function q4c() {
     answer001.innerHTML = "<div id=green001>" + correct[4] + "</div>";
+    $("#image-holder").html("<img src='assets/images/04_samurai.gif' width='400px'/>");
     $("#A").text("");
     $("#B").text("");
     $("#C").text("");
     $("#D").text("");
-    
-    next001.innerHTML = "<button class=buttons001 onclick=questionFive()>End of Quiz</button>";
+
+    next001.innerHTML = "<button class=buttons001 onclick=questionFive()>Next</button>";
     scoreDisplay.innerHTML = score++;
 }
 function q4i() {
     answer001.innerHTML = "<div id=red001>" + incorrect[4] + "</div>";
+    $("#image-holder").html("<img src='assets/images/04_samurai.gif' width='400px'/>");
     $("#A").text("");
     $("#B").text("");
     $("#C").text("");
     $("#D").text("");
-    
-    next001.innerHTML = "<button class=buttons001 onclick=questionFive()>End of Quiz</button>";
+
+    next001.innerHTML = "<button class=buttons001 onclick=questionFive()>Next</button>";
 }
 
 function questionFive() {
     $("#ask").html(q[5].question);
+    $("#image-holder").html("");
     $("#A").html(a[5]);
     $("#B").html(b[5]);
     $("#C").html(c[5]);
     $("#D").html(d[5]);
-    
+
     $("#next001").text("");
     $("#answer001").text("");
     $("#numberQuestion").html(number++);
 }
 function q5c() {
     answer001.innerHTML = "<div id=green001>" + correct[5] + "</div>";
+    $("#image-holder").html("<img src='assets/images/05_scooby.gif' width='400px'/>");
     $("#A").text("");
     $("#B").text("");
     $("#C").text("");
     $("#D").text("");
-    
-    next001.innerHTML = "<button class=buttons001 onclick=questionSix()>End of Quiz</button>";
+
+    next001.innerHTML = "<button class=buttons001 onclick=questionSix()>Next</button>";
     scoreDisplay.innerHTML = score++;
 }
 function q5i() {
     answer001.innerHTML = "<div id=red001>" + incorrect[5] + "</div>";
+    $("#image-holder").html("<img src='assets/images/05_scooby.gif' width='400px'/>");
     $("#A").text("");
     $("#B").text("");
     $("#C").text("");
     $("#D").text("");
-    
-    next001.innerHTML = "<button class=buttons001 onclick=questionSix()>End of Quiz</button>";
+
+    next001.innerHTML = "<button class=buttons001 onclick=questionSix()>Next</button>";
 }
 
 function questionSix() {
     $("#ask").html(q[6].question);
+    $("#image-holder").html("");
     $("#A").html(a[6]);
     $("#B").html(b[6]);
     $("#C").html(c[6]);
     $("#D").html(d[6]);
-    
+
     $("#next001").text("");
     $("#answer001").text("");
     $("#numberQuestion").html(number++);
 }
 function q6c() {
     answer001.innerHTML = "<div id=green001>" + correct[6] + "</div>";
+    $("#image-holder").html("<img src='assets/images/06_dexters.gif' width='400px'/>");
     $("#A").text("");
     $("#B").text("");
     $("#C").text("");
     $("#D").text("");
-    
-    next001.innerHTML = "<button class=buttons001 onclick=questionSeven()>End of Quiz</button>";
+
+    next001.innerHTML = "<button class=buttons001 onclick=questionSeven()>Next</button>";
     scoreDisplay.innerHTML = score++;
 }
 function q6i() {
     answer001.innerHTML = "<div id=red001>" + incorrect[6] + "</div>";
+    $("#image-holder").html("<img src='assets/images/06_dexters.gif' width='400px'/>");
     $("#A").text("");
     $("#B").text("");
     $("#C").text("");
     $("#D").text("");
-    
-    next001.innerHTML = "<button class=buttons001 onclick=questionSeven()>End of Quiz</button>";
+
+    next001.innerHTML = "<button class=buttons001 onclick=questionSeven()>Next</button>";
 }
 
 function questionSeven() {
     $("#ask").html(q[7].question);
+    $("#image-holder").html("");
     $("#A").html(a[7]);
     $("#B").html(b[7]);
     $("#C").html(c[7]);
     $("#D").html(d[7]);
-    
+
     $("#next001").text("");
     $("#answer001").text("");
     $("#numberQuestion").html(number++);
 }
 function q7c() {
     answer001.innerHTML = "<div id=green001>" + correct[7] + "</div>";
+    $("#image-holder").html("<img src='assets/images/07_dbz.gif' width='400px'/>");
     $("#A").text("");
     $("#B").text("");
     $("#C").text("");
     $("#D").text("");
-    
-    next001.innerHTML = "<button class=buttons001 onclick=endGame()>End of Quiz</button>";
+
+    next001.innerHTML = "<button class=buttons001 onclick=endGame()>End Trivia</button>";
     scoreDisplay.innerHTML = score++;
 }
 function q7i() {
     answer001.innerHTML = "<div id=red001>" + incorrect[7] + "</div>";
+    $("#image-holder").html("<img src='assets/images/07_dbz.gif' width='400px'/>");
     $("#A").text("");
     $("#B").text("");
     $("#C").text("");
     $("#D").text("");
-    
-    next001.innerHTML = "<button class=buttons001 onclick=endGame()>End of Quiz</button>";
+
+    next001.innerHTML = "<button class=buttons001 onclick=endGame()>End Trivia</button>";
 }
 
 function endGame() {
     $("#ask").text("Thanks for playing this epic game of nostalgia!");
+    $("#image-holder").html("");
     $("#A").text("");
     $("#B").text("");
     $("#C").text("");
@@ -367,7 +416,7 @@ function endGame() {
     //We create a repeat001 to reset the game
     next001.innerHTML = "<div id=userInfo>" + "<button class=buttons001 onclick=repeat001()>Repeat</button>";
     answer001.innerHTML = "";
-    numberQuestion.innerHTML = number++;
+    
 }
 function repeat001() {
     //Which will take you back to the beginning of the 

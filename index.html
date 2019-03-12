@@ -13,13 +13,14 @@
 </head>
 
 <body style="background-image: url(http://doanarae.com/doanarae/7881-cartoon-network-backgrounds_8355.jpg)">
-    <div class="container">
+    <div class="container" style="background-image: url(https://ak8.picdn.net/shutterstock/videos/2757008/thumb/1.jpg)">
         <div id="trivia">
             <div id="userInfo">
                 <!--This is for the sake of creating a title/headline-->
                 <h2>Totally 2000s Cartoon Network Trivia!</h2>
                 <p>Question: <text id="numberQuestion">0</text></p>
                 <p>Score: <text id="scoreDisplay">0</text></p>
+                <p>Time Left: <text id="big-time-rush">1 Minute!</text></p>
 
                 <hr />
 
@@ -27,14 +28,17 @@
             </div>
             <div id="text002">
                 <div id="ask"></div>
-                <div id="A"></div>
-                <div id="B"></div>
-                <div id="C"></div>
-                <div id="D"></div>
+                <div class="multiple-choice">
+                    <div id="A"></div>
+                    <div id="B"></div>
+                    <div id="C"></div>
+                    <div id="D"></div>
+                </div>
                 <div id="answer001"></div>
+                <div id="image-holder"></div>
 
                 <div id="userInfo">
-                    <div id="disappear001"><button class="buttons001" onclick="questionZero()">Begin</button></div>
+                    <div id="hideThisJawn"><button class="buttons001" id="beginButton">Begin</button></div>
                 </div>
                 <div id="next001"></div>
             </div>
@@ -44,9 +48,9 @@
 The game ends when the time runs out. The page will reveal the number of right and wrong answers.
 Don't let the player pick more than one answer per question.
 Don't forget to include a countdown timer.-->
-<script src="https://code.jquery.com/jquery-3.3.1.min.js"
-integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
-<script type="text/javascript" src="assets/javascript/app.js"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"
+        integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="assets/javascript/app.js"></script>
 </body>
 
 </html>
