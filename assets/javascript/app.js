@@ -1,5 +1,5 @@
 //$(document).ready(function () {
-//I created an array of multiple choice question objects. Each with the question and it's potential options of answers.
+//I created an array of multiple choice question objects. Each with the question and it's potential options of answers. Commented the index of the answer to the options array.
 var q = [
     {
         question: "Which show has three girls with superpowers?",
@@ -103,7 +103,7 @@ var score = 0; score++;
 $("#beginButton").click(questionZero).click(run);
 
 //I will store my timer info here
-var timeCount = 60 * 1000 //BASICALLY 1 MINUTE BUT IDK HOW TO CONVERT
+var timeCount = 60 //PLAYING IT BY SECONDS BECAUSE IDK HOW TO CONVERT THE TIME DISPLAY 
 var timeTime;
 
 function run() {
@@ -112,13 +112,13 @@ function run() {
 }
 function decrement() {
     timeCount--;
-    $("#big-time-rush").text(timeCount);
+    $("#big-time-rush").text(timeCount + " seconds");
 
     if (timeCount === 0) {
         stop();
         endGame();
-        $("#answer001").html("<br/>Finish the game in less than 2 minutes next time!") //Not applicable to each question but close enough
-        //<ADD A SLOWPOKE IMAGE>
+        $("#answer001").html("<br/>Don't be such a Slowpoke next time!")
+        $("#image-holder").html("<img src='assets/images/timeout.gif' width='400px'/>");
     }
 }
 function stop() {
@@ -151,7 +151,7 @@ function q0c() {
     $("#B").text("");
     $("#C").text("");
     $("#D").text("");
-    next001.innerHTML = "<button class=buttons001 onclick=questionOne()>Next</button>";
+    next001.innerHTML = "<button class=buttons001 onclick=questionOne()>Next</button>"; //$("#next001").html.click(questionOne); wouldn't work and I'm not sure the proper jQuery syntax for the code to my left
     scoreDisplay.innerHTML = score++;
 }
 function q0i() {
@@ -406,7 +406,7 @@ function q7i() {
 }
 
 function endGame() {
-    $("#ask").text("Thanks for playing this epic game of nostalgia!");
+    $("#ask").html("Hope you enjoyed this nostalgic trivia!<br/> You got " + (score - 1) + " out of 8 questions correct with " + timeCount + " seconds left to spare." );
     $("#image-holder").html("");
     $("#A").text("");
     $("#B").text("");
@@ -414,14 +414,12 @@ function endGame() {
     $("#D").text("");
     //We create a div element and give it the attribute (so it can be placed on the center)
     //We create a repeat001 to reset the game
-    next001.innerHTML = "<div id=userInfo>" + "<button class=buttons001 onclick=repeat001()>Repeat</button>";
+    next001.innerHTML = "<button class=buttons001 onclick=repeat001()>Repeat</button>";
     answer001.innerHTML = "";
-    
+    stop();
 }
 function repeat001() {
-    //Which will take you back to the beginning of the 
     location.reload();
-
 }
 
 //});
